@@ -1,0 +1,24 @@
+{
+    "manifest_version": 3,
+    "name": "One Click Amex Offers",
+    "description": "Add all Amex offers at once by one click",
+    "version": "1.0",
+    "action": {
+      "default_icon": "amex-icon.png"
+    },
+    "content_scripts":[
+        {
+            "js": ["index.js"],
+            "css": ["index.css"],
+            "matches":[
+                "https://global.americanexpress.com/offers/eligible"
+            ]
+        }
+    ],
+    "permissions": [
+        "activeTab"
+      ],
+      "background": {
+        "service_worker": "background.js"
+      }
+  }
