@@ -12,7 +12,8 @@
             "css": ["index.css"],
             "matches":[
                 "https://global.americanexpress.com/offers/eligible"
-            ]
+            ],
+            "run_at": "document_idle"
         }
     ],
     "permissions": [

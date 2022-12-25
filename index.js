@@ -10,14 +10,19 @@ async function getOffers() {
         await new Promise(r => setTimeout(r, 500));
     }
 }
-const headerDiv = document.querySelector("#offers > div > section.shadow-1.dls-white-bg > span > div")
 
-const allOfferBtn = document.createElement("button")
-allOfferBtn.classList.add("all-offer-btn")
-allOfferBtn.innerText = "Get All Offers"
-allOfferBtn.onclick = getOffers
-if (headerDiv) {
-    headerDiv.appendChild(allOfferBtn)
-} else {
-    console.error("header div not found")
-}
+const findHeaderDiv = setInterval(() => {
+    const headerDiv = document.querySelector("#offers > div > section.shadow-1.dls-white-bg > span > div")
+
+    const allOfferBtn = document.createElement("button")
+    allOfferBtn.classList.add("all-offer-btn")
+    allOfferBtn.innerText = "Get All Offers"
+    allOfferBtn.onclick = getOffers
+    if (headerDiv) {
+        headerDiv.appendChild(allOfferBtn)
+        clearInterval(findHeaderDiv)
+    } else {
+        console.error("header div not found")
+    }
+}, 1000)
+
