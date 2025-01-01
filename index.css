@@ -1,9 +1,4 @@
-.all-offer-btn {
-    padding: 0.5rem 1.25rem;
-    font-size: .9375rem;
-    line-height: 1.375rem;
-    border-radius: 0.1875rem;
-    color: #fff;
-    background: #006fcf;
-    margin-left: 10px;
+#all-offer-btn {
+    margin-right: 10px;
+    min-width: 0px !important;
 }
