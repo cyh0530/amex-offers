@@ -6,10 +6,9 @@ async function getOffers() {
   var offerButtons = Array.from(document.querySelectorAll(".offer-cta")).filter(
     (btn) => btn.title == "Add to Card"
   );
-  console.log(offerButtons.length);
+
   var index;
   for (index = 0; index < offerButtons.length; ++index) {
-    console.log(`Clicking offer button ${index}`);
     offerButtons[index].click();
     // Wait 0.5 seconds to be nice to AMEX servers
     await new Promise((r) => setTimeout(r, 500));
@@ -24,8 +23,6 @@ class OfferButtonManager {
   }
 
   setupUrlChangeListener() {
-    console.log("Setting up URL change listener");
-
     const observer = new MutationObserver((mutations) => {
       for (const mutation of mutations) {
         if (mutation.type === "childList" || mutation.type === "subtree") {
@@ -43,25 +40,19 @@ class OfferButtonManager {
   }
 
   handleUrlChange() {
-    console.log("Handling URL change");
     const currentPath = window.location.pathname;
 
     if (currentPath === validOfferPath) {
-      console.log("Showing button");
       this.showButton();
     } else {
-      console.log("Removing button");
       this.removeButton();
     }
   }
 
   createButton() {
-    console.log("Creating button");
     if (this.button) {
-      console.log("Button already exists");
       return this.button;
     }
-    console.log("Button does not exist, creating new one");
 
     const allOfferBtn = document.createElement("button");
     // amex css
@@ -83,14 +74,12 @@ class OfferButtonManager {
     }
     const currentOfferBtn = document.getElementById(allOfferBtnId);
     if (currentOfferBtn) {
-      console.log("Button already exists");
       return;
     }
     const targetElement = document.querySelector(
       "#offers > div > section > span > div"
     );
     if (!targetElement) {
-      console.log("Target element not found");
       return;
     }
     targetElement.insertBefore(this.button, targetElement.firstChild);
@@ -104,5 +93,3 @@ class OfferButtonManager {
 }
 
 new OfferButtonManager();
-
-console.log("OfferButtonManager initialized");
